@@ -1,4 +1,6 @@
-# flask_python05
+# GETリクエストでHTMLとjsonを表示する
+
+## flask_python05
 
 - イメージ作成
 
@@ -12,9 +14,12 @@ docker build ./ -t flask_python:5
 docker run -it -p 8080:8080 --name flask05 flask_python:5
 ```
 
-- <http://localhost:8080/html>
+- 以下のアドレスにアクセス
+    - <http://localhost:8080/html>
 
-- <http://localhost:8080/json>
+    - <http://localhost:8080/json>
+
+- コンテナ停止
 
 ```shell
 docker stop flask05

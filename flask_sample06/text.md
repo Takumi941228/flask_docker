@@ -1,4 +1,6 @@
-# flask_python06
+# 簡単なHTMLを表示する
+
+## flask_python06
 
 - イメージ作成
 
@@ -12,7 +14,10 @@ docker build ./ -t flask_python:6
 docker run -it -p 8080:8080 --name flask06 flask_python:6
 ```
 
-- <http://localhost:8080/html>
+- 以下のアドレスにアクセス
+    - <http://localhost:8080/html>
+
+- コンテナ停止
 
 ```shell
 docker stop flask06

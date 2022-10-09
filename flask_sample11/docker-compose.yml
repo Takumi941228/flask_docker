@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  flask:
+    build: ./flask
+    image: flask_python:11
+    container_name: flask11
+    ports:
+      - "8080:80"
+ 
+  nginx:
+    build: ./nginx
+    image: nginx_python:2
+    container_name: nginx02
+    tty: true
+    privileged: true
+    ports:
+      - "80:80"

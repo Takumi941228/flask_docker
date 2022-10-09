@@ -1,4 +1,6 @@
-# flask_python07
+# Jinja2のテンプレートエンジンを学ぶ
+
+## flask_python07
 
 - イメージ作成
 
@@ -12,7 +14,11 @@ docker build ./ -t flask_python:7
 docker run -it -p 8080:8080 --name flask07 flask_python:7
 ```
 
-- <http://localhost:8080/flask/Sangi>
+- 以下のアドレスにアクセス
+    - <http://localhost:8080/flask/Sangi>
+
+- コンテナ停止
 
 ```shell
 docker stop flask07
+```

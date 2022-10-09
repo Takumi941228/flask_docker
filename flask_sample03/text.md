@@ -1,4 +1,6 @@
-# flask_python03
+# 引数を使う
+
+## flask_python03
 
 - イメージ作成
 
@@ -12,9 +14,10 @@ docker build ./ -t flask_python:3
 docker run -it -p 8080:8080 --name flask03 flask_python:3
 ```
 
-- <http://localhost:8080/username/sangi>
+- 以下のアドレスにアクセス
+    - <http://localhost:8080/username/sangi>
 
-- <http://localhost:8080/userid/021500>
+    - <http://localhost:8080/userid/021500>
 
 - コンテナ停止
 

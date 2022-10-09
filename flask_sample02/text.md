@@ -1,4 +1,6 @@
-# flask_python02
+# ルーティングを学ぶ
+
+## flask_python02
 
 - イメージ作成
 
@@ -38,13 +40,14 @@ export FLASK_APP=main
 flask run -h 0.0.0.0 -p 8080
 ```
 
-- <http://localhost:8080/world>
+- 以下のアドレスにアクセス
+    - <http://localhost:8080/world>
 
-- <http://localhost:8080/python>
+    - <http://localhost:8080/python>
 
-- <http://localhost:8080/sangi>
+    - <http://localhost:8080/sangi>
 
-- <http://localhost:8080/python/flask>
+    - <http://localhost:8080/python/flask>
 
 - ルーティングの追加
 
@@ -57,6 +60,9 @@ vim main.py
 def name():
     return "Hello, Takumi!"
 ```
+
+- 以下のアドレスにアクセス
+    - <http://localhost:8080/name>
 
 - コンテナ停止
 
