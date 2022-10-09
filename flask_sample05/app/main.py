@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route("/html")
 def html():
-    return "<!DOCTYPE html><head><title>FlaskをDockerで構築</title></head><body>Flaskを学びましょう!</body><html>"
+    return "<h1>hello, World!</h1>"
 
 @app.route("/json")
 def json():

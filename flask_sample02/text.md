@@ -55,7 +55,7 @@ vim main.py
 ```python
 @app.route("/name")
 def name():
-    return "<p>Hello, Takumi!</p>"
+    return "Hello, Takumi!"
 ```
 
 - コンテナ停止
