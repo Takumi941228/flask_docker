@@ -1,31 +1,48 @@
-# Nginxでリバースプロキシ（未完成）
+# Nginxでリバースプロキシ
 
 ## flask_python11
 
-- イメージ作成
+- webとproxyのイメージ作成
 
 ```shell
-docker build ./ -t flask_python:11
+docker-compose build --no-cache
 ```
 
-- コンテナ作成と起動
+- flaskとnginxのコンテナ作成と起動
 
 ```shell
-docker run -it -p 8080:8080 --name flask11 flask_python:11
+docker-compose up -d
 ```
 
 - powershellでjsonデータをPOSTリクエスト
 
 ```powrshell
-Invoke-RestMethod -Headers @{"Content-type"="application/json"} -Method POST -Body '{"Name":"Sangi","ID":"022500","Age":19}' http://localhost:8080/post
+Invoke-RestMethod -Headers @{"Content-type"="application/json"} -Method POST -Body '{"ID":"01","Temp":25.6,"Humi":55.4,"Press":999.3}' http://localhost:8080/post
 ```
 
 - 以下のアドレスにアクセス
 
     - <http://localhost:8080/get>
 
+- nginxのコンテナに/bin/bashで入る
+
+```shell
+docker exec -it nginx /bin/bash
+```
+
+- nginxのサービスを再起動
+
+```shell
+service nginx restart
+```
+
+- 以下のアドレスにアクセス(xはコンテナのIPアドレス(WSl))
+
+    - <http://xx.xx.xx.xx/sangi>
+    - <http://localhst/sangi>
+
 - コンテナ停止
 
 ```shell
-docker stop flask10
+docker-compose down
 ```

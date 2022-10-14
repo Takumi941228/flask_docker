@@ -51,7 +51,7 @@ server {
                 try_files $uri $uri/ =404;
         }
         location /sangi {
-                proxy_pass http://localhost:8080/get;
+                proxy_pass http://flask11:8080/get;
         }
         # pass PHP scripts to FastCGI server
         #

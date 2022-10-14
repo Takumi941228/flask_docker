@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FlaskでWebアプリ開発</title>
+    <title>IoTシステム</title>
 </head>
 <body>
-    <h1>{{ name }}のホームページ</h1>
-    <h2>Hello Flask!!</h2>
-    <h3>私の情報</h3>
+    <h4>ESP32-DevKitC-DeviceID : {{ id }}</h4>
     <ul>
-        <li>ID : {{ id }}</li>
-        <li>Age : {{ age }}</li>
+        <li>計測時間 : {{ time }}</li>
+        <li>温度 : {{ temp }}℃</li>
+        <li>湿度 : {{ humi }}%</li>
+        <li>気圧 : {{ press }}hPa</li>
     </ul>
 </body>
 </html>

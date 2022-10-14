@@ -1,18 +1,19 @@
 version: '3'
 
 services:
-  flask:
+  web:
     build: ./flask
     image: flask_python:11
     container_name: flask11
     ports:
-      - "8080:80"
+      - "8080:8080"
  
-  nginx:
+  proxy:
     build: ./nginx
-    image: nginx_python:2
-    container_name: nginx02
+    image: debian_nginx:1
+    container_name: nginx
     tty: true
-    privileged: true
+    depends_on:
+      - web
     ports:
       - "80:80"
