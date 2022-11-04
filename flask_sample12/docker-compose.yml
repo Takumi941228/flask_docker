@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  web:
+    build: ./flask
+    image: flask_python:11
+    container_name: flask11
+    ports:
+      - "8080:8080"
+ 
+  proxy:
+    build: ./nginx
+    image: debian_nginx:1
+    container_name: nginx
+    tty: true
+    depends_on:
+      - web
+    ports:
+      - "80:80"
