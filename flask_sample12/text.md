@@ -1,4 +1,4 @@
-# Nginxでリバースプロキシ
+# ESP32マイコンを使ったIoTシステムの製作
 
 ## flask_python12
 
