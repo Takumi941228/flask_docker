@@ -55,13 +55,13 @@ IPAddress local_ip(XX,XX,XX,XX);
 IPAddress subnet(XX,XX,XX,XX);
 IPAddress gateway(XX,XX,XX,XX);
 
-//　BME280クラスを変数名bmeとしてインスタンスを生成
+//　BME280クラスをインスタンス名bmeとしてインスタンスを生成
 BME280 bme;
 
 // BME280_SensorMeasurements構造体名をmeasurementsとして宣言
 BME280_SensorMeasurements measurements;
 
-// Tickerクラスを変数名tickerMeasureとしてインスタンスを生成
+// Tickerクラスをインスタンス名をtickerMeasureとしてインスタンスを生成
 Ticker tickerMeasure;
 
 //　HTTPClient
