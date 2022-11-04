@@ -166,12 +166,6 @@ docker-compose build --no-cache
 docker-compose up -d
 ```
 
-- powershellでjsonデータをPOSTリクエスト
-
-```powrshell
-Invoke-RestMethod -Headers @{"Content-type"="application/json"} -Method POST -Body '{"ID":"01","Temp":25.6,"Humi":55.4,"Press":999.3}' http://localhost:8080/post
-```
-
 - 以下のアドレスにアクセス
 
     - <http://localhost:8080/get>
