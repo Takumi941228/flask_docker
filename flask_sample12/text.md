@@ -2,6 +2,18 @@
 
 ## flask_python12
 
+- USBドライバのインストール
+
+    - [Windows](https://www.silabs.com/documents/public/software/CP210x_VCP_Windows.zip)
+
+    - [macOS](https://www.silabs.com/documents/public/software/Mac_OSX_VCP_Driver.zip)
+
+    - [Linux](https://m5stack.oss-cn-shenzhen.aliyuncs.com/resource/drivers/CP210x_VCP_Linux.zip)
+
+- ESP32-DevKit-VEとAE-BME280の接続
+
+![回路図](/flask_sample12/fig.jpg)
+
 - Arduino IDEボードマネージャー
 
 ```shell
@@ -15,7 +27,7 @@ https://dl.espressif.com/dl/package_esp32_index.json
 - 各種ライブラリの追加
 
     - ArduinoJSON
-        - <https://arduinojson.org/?utm_source=meta&utm_medium=library.properties>
+        - <https://arduinojson.org>
 
     - SparkFun_BME280
         - <https://github.com/sparkfun/SparkFun_BME280_Arduino_Library>
