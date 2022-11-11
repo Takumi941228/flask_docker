@@ -63,7 +63,7 @@ Ticker tickerMeasure;
 HTTPClient http;
 
 // JSONを作成する
-StaticJsonDocument<JSON_OBJECT_SIZE(5)> json_array;
+StaticJsonDocument<JSON_OBJECT_SIZE(10)> json_array;
 char json_string[255];
 
 //WiFiへの接続
@@ -180,7 +180,7 @@ service nginx restart
 - 以下のアドレスにアクセス(xはコンテナのIPアドレス(WSl))
 
     - <http://xx.xx.xx.xx/sangi>
-    - <http://localhst/sangi>
+    - <http://localhost/sangi>
 
 - コンテナ停止
 
