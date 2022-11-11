@@ -2,11 +2,10 @@
 
 ## flask_python12
 
+### Arduinoの環境構築
+
 - USBドライバのインストール
-
     - [Windows](https://www.silabs.com/documents/public/software/CP210x_VCP_Windows.zip)
-
-    - [macOS](https://www.silabs.com/documents/public/software/Mac_OSX_VCP_Driver.zip)
 
     - [Linux](https://m5stack.oss-cn-shenzhen.aliyuncs.com/resource/drivers/CP210x_VCP_Linux.zip)
 
@@ -21,11 +20,9 @@ https://dl.espressif.com/dl/package_esp32_index.json
 ```
 
 - esp32用のボードを追加
-
     - <https://github.com/espressif/arduino-esp32>
 
 - 各種ライブラリの追加
-
     - ArduinoJSON
         - <https://arduinojson.org>
 
@@ -35,11 +32,9 @@ https://dl.espressif.com/dl/package_esp32_index.json
     - Ticker
         - <https://github.com/sstaub/Ticker>
 
-
 - Arduino Code
-
 ```c++
-//esp32_conde.ino
+// 各種ライブラリ
 #include <HTTPClient.h>
 #include <ArduinoJson.h>
 #include <SparkFunBME280.h>
@@ -61,20 +56,19 @@ BME280 bme;
 // BME280_SensorMeasurements構造体名をmeasurementsとして宣言
 BME280_SensorMeasurements measurements;
 
-// Tickerクラスをインスタンス名をtickerMeasureとしてインスタンスを生成
+// Tickerクラスをインスタンス名tickerMeasureとしてインスタンスを生成
 Ticker tickerMeasure;
 
-//　HTTPClient
+//　HTTPClientクラスをインスタンス名httpとしてインスタンスを生成
 HTTPClient http;
 
 // JSONを作成する
-StaticJsonDocument<JSON_OBJECT_SIZE(4)> json_array;
+StaticJsonDocument<JSON_OBJECT_SIZE(5)> json_array;
 char json_string[255];
 
 //WiFiへの接続
 void setupWiFi() {
   WiFi.config(local_ip, gateway, subnet);
-  // connect wifi
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
   while (WiFi.status() != WL_CONNECTED) {
     Serial.println(".");
@@ -95,15 +89,22 @@ void sendSensorData() {
   Serial.print(measurements.pressure / 100, 2);
   Serial.print(",");
   Serial.println(measurements.temperature, 2);
+
+  // ペイロードを作成してデータを格納
+  json_array.clear();
+  json_arry["ID"] = String("XX")
+  json_array["humid"] = String(measurements.humidity, 2);
+  json_array["press"] = String(measurements.pressure / 100, 2);
+  json_array["temp"] = String(measurements.temperature, 2);
+  serializeJson(json_array, json_string, sizeof(json_string));
 }
 
 void setup() {
   Serial.begin(115200);
-
   Wire.begin();
   bme.setI2CAddress(0x77);
 
-  //Begin communication over I2C
+  // Begin communication over I2C
   if (bme.beginI2C() == false) {
     Serial.println("The sensor did not respond. Please check wiring.");
   }
@@ -111,7 +112,7 @@ void setup() {
   // WiFi接続
   setupWiFi();
 
-  // 1sごとにセンサデータを送信する
+  // 5secごとにセンサデータを送信する
   tickerMeasure.attach_ms(5000, sendSensorData);
 }
 
@@ -123,17 +124,9 @@ void loop() {
     WiFi.reconnect();
   }
 
-    // ペイロードを作成して送信を行う．
-  json_array.clear();
-  json_arry["ID"] = String("XX")
-  json_array["humid"] = String(measurements.humidity, 2);
-  json_array["press"] = String(measurements.pressure / 100, 2);
-  json_array["temp"] = String(measurements.temperature, 2);
-  serializeJson(json_array, json_string, sizeof(json_string));
-
   //Check WiFi connection status
   if (WiFi.status() == WL_CONNECTED) {
-    http.begin("http://XX.XX.XX.XX/post");
+    http.begin("http://XX.XX.XX.XX:XX/post");
     http.addHeader("Content-Type", "application/json");
 
     int httpResponseCode = http.POST((uint8_t *)json_string, strlen(json_string));
@@ -144,7 +137,6 @@ void loop() {
     } else {
       Serial.println("Error on sending POST");
     }
-
     http.end();
 
   } else {
@@ -153,6 +145,13 @@ void loop() {
   delay(10000);
 }
 ```
+- コードの変更点
+  - SSID及びPASSWORDの変更
+  - ESP32のIPアドレスの設定
+  - IDの変更
+  - HTTP通信のPOSTリクエスト先のアドレス設定
+
+### Webアプリの環境構築
 
 - webとproxyのイメージ作成
 
@@ -165,10 +164,6 @@ docker-compose build --no-cache
 ```shell
 docker-compose up -d
 ```
-
-- 以下のアドレスにアクセス
-
-    - <http://localhost:8080/get>
 
 - nginxのコンテナに/bin/bashで入る
 
